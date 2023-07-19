@@ -4,13 +4,14 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import Player from 'xgplayer';
-import 'xgplayer/dist/index.min.css';
+import Player from 'xgplayer-flv';
 
 const initPlayer = () => {
     let player = new Player({
         id: 'vs',
-        url: 'http://localhost:8080/preview/rtsp.mp4'
+        url: 'http://localhost:8080/preview/rtsp.flv',
+        width: "100%",
+        height: "100%",
     });
 }
 
