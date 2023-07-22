@@ -12,29 +12,38 @@ import 'video.js/dist/video-js.css'
 import videojs from 'video.js';
 import 'videojs-flash'
 
-let player;
-
 const options = (src) => {
     return {
-        autoplay: true, // true,浏览器准备好时开始播放。
-        muted: true, // 默认情况下将会消除音频。
-        loop: true, // 导致视频一结束就重新开始。
-        controls: false, //取消视频中的进度条
-        preload: 'auto', // auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
-        language: 'zh-CN',  //汉化
-        fluid: true, // 当true时，将按比例缩放以适应其容器。
+        // 开启自动播放
+        autoplay: true,
+        // 默认情况下将会消除音频。
+        muted: true,
+        // 循环播放
+        loop: true,
+        // 关闭进度条
+        controls: false,
+        // 立即开始加载视频
+        preload: 'auto',
+        // 汉化
+        language: 'zh-CN',
+        // 按比例缩放适应容器
+        fluid: true,
         sources: [{
             type: 'rtmp/flv',
-            src  //视频播放地址
+            // 视频地址
+            src
         }],
-        notSupportedMessage: '此视频暂无法播放，请稍后再试', // 无法播放媒体源时显示的默认信息。
+        // 默认的错误消息
+        notSupportedMessage: '此视频暂无法播放，请稍后再试',
         textTrackDisplay: false,
     }
 }
 
+// 定义播放器
+let player;
 onMounted(() => {
     try {
-        player = videojs("valveVideo", options("rtmp://127.0.0.1:1935/live/f203ec7c-0792-4d48-9294-e2f20d272c74"), () => {
+        player = videojs("valveVideo", options("rtmp://127.0.0.1:1935/live/bb40c0ad-6c26-40c2-a8e6-8e1a2b687d6e"), () => {
             player.play();
         });
     } catch (error) {
@@ -43,7 +52,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-    //离开页面时销毁video
+    // 离开页面时销毁
     player.dispose()
 })
 </script>
